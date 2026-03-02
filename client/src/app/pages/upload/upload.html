@@ -1,0 +1,51 @@
+<nav class="navbar navbar-dark bg-dark px-4 d-flex justify-content-between">
+  <span class="navbar-brand">📸 EventSnap AI — Upload Photos</span>
+  <button class="btn btn-outline-light btn-sm" (click)="router.navigate(['/dashboard'])">← Back</button>
+</nav>
+
+<div class="container mt-5">
+  <div class="card p-4 shadow col-md-6 mx-auto">
+
+    <h4 class="mb-1">Upload Event Photos</h4>
+    <p *ngIf="roomName" class="text-muted small mb-4">Room: <strong>{{ roomName }}</strong></p>
+
+    <div *ngIf="errorMsg" class="alert alert-danger alert-dismissible">
+      {{ errorMsg }}
+      <button type="button" class="btn-close" (click)="errorMsg = ''"></button>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Select Photos</label>
+      <input type="file" class="form-control" multiple accept="image/*" (change)="onFilesSelected($event)"
+        [disabled]="uploading">
+    </div>
+
+    <div *ngIf="selectedFiles.length > 0 && !uploading" class="mb-3 text-muted small">
+      {{ selectedFiles.length }} photo(s) selected
+    </div>
+
+    <!-- Progress bar — always visible while uploading -->
+    <div *ngIf="uploading" class="mb-3">
+      <div class="d-flex justify-content-between mb-1">
+        <small class="text-muted">Uploading to Cloudinary...</small>
+        <small class="fw-bold">{{ uploadedCount }} / {{ selectedFiles.length }}</small>
+      </div>
+      <div class="progress" style="height: 14px; border-radius: 8px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar"
+          [style.width.%]="uploadProgress" [attr.aria-valuenow]="uploadProgress" aria-valuemin="0" aria-valuemax="100">
+          {{ uploadProgress }}%
+        </div>
+      </div>
+      <p class="text-muted small mt-2 mb-0">
+        Please wait — each photo is uploaded and queued for AI face scanning.
+      </p>
+    </div>
+
+    <button class="btn btn-primary w-100" (click)="uploadPhotos()"
+      [disabled]="uploading || selectedFiles.length === 0 || !!errorMsg">
+      <span *ngIf="uploading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+      {{ uploading ? 'Uploading ' + uploadedCount + ' of ' + selectedFiles.length + '...' : 'Upload Photos' }}
+    </button>
+
+  </div>
+</div>

@@ -1,0 +1,78 @@
+[33mcommit 24325a1f1eb132ff72a1eed273218a31ee1a1eb5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Fri Apr 10 17:50:44 2026 +0530
+
+    Some changes
+
+[33mcommit 814de36960d28097e2990b97ae5a84be497a3785[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Fri Apr 10 22:18:31 2026 +0530
+
+    Adding all the changes and adding some new files for new features
+
+[33mcommit 0fba08fdcc7f3bbbfc8264b3bdfae45c34bccd6d[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Fri Apr 10 22:16:11 2026 +0530
+
+    Adding all remaining features
+
+[33mcommit 7bc25ee2d4175f8abcf8e437060f1f3ce87b8933[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Fri Apr 10 18:52:23 2026 +0530
+
+    adding and updating dashboard and rooms
+
+[33mcommit 94dfb0c9385ee517c515feab0f11607936fcee71[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Thu Apr 9 11:13:21 2026 +0530
+
+    Some minor changes
+
+[33mcommit f1a7293eb13159e100849b3a49707eae87a4e348[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Thu Apr 9 11:07:45 2026 +0530
+
+    Week 2 - Angular setup, login, signup, dashboard done
+
+[33mcommit f31d076f72ed66caef8d87b72084ccfa9778343c[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Thu Apr 9 00:34:39 2026 +0530
+
+    connecting with cloudinary, using tokens to upload photos, making simple middleware route
+
+[33mcommit 7dd6bc2c32302a912cbb3a8d1bf2119a661b733c[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Tue Mar 31 00:02:06 2026 +0530
+
+    get room by code
+
+[33mcommit 0a6257211984b7212859c13731ea10307abdf059[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Tue Mar 24 12:58:14 2026 +0530
+
+    Mongo DB connected and tested
+
+[33mcommit d199cbe5ab95926cf401a152e59748bf6d143922[m
+Merge: affa3b6 7cfbc1a
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Sat Feb 28 17:17:35 2026 +0530
+
+    Merge branch 'main' of https://github.com/JagdeepKaur-09/Find-your-event-pic-AI
+
+[33mcommit 7cfbc1ad6558d91b021dff305104103ff5e61d2f[m
+Author: JagdeepKaur-09 <sghps05jagdeep10a@gmail.com>
+Date:   Sat Feb 28 17:01:06 2026 +0530
+
+    Initial commit
+
+[33mcommit affa3b684e7e7b7de033ca368023d081e87cd45d[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Sat Feb 28 16:57:53 2026 +0530
+
+    Removing node module folders
+
+[33mcommit 97c15fe4178949dd2f919f2a3d487c770ccdbf2c[m
+Author: Jagdeep Kaur <sghps05jagdeep10a@gmail.com>
+Date:   Sat Feb 28 16:53:05 2026 +0530
+
+    Initial commit of this project!

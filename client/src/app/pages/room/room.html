@@ -1,0 +1,193 @@
+<!-- Navbar -->
+<nav class="es-navbar">
+  <div class="es-navbar-brand">
+    <span class="es-logo-icon">📸</span>
+    <span class="es-logo-text">EventSnap <span class="es-logo-accent">AI</span></span>
+  </div>
+  <div class="es-navbar-actions">
+    <button class="es-btn es-btn-ghost" (click)="goToConsent()">
+      <span>🪪</span> Register Face
+    </button>
+    <button class="es-btn es-btn-ghost" *ngIf="isOrganizer" (click)="goToUpload()">
+      <span>⬆️</span> Upload Photos
+    </button>
+    <button class="es-btn es-btn-outline" (click)="router.navigate(['/dashboard'])">
+      ← Dashboard
+    </button>
+  </div>
+</nav>
+
+<div class="es-page">
+
+  <!-- Error Banner -->
+  <div *ngIf="errorMsg" class="es-alert es-alert-error">
+    <span>⚠️ {{ errorMsg }}</span>
+    <button class="es-alert-close" (click)="errorMsg = ''">✕</button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="pageLoading"
+    style="background:#fff; min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <div class="spinner-border text-primary mb-3" role="status" style="width:3rem;height:3rem;"></div>
+    <p class="text-muted">Loading room...</p>
+  </div>
+
+  <!-- Room Content -->
+  <div *ngIf="!pageLoading && room">
+
+    <!-- Face not registered banner -->
+    <div *ngIf="!checkingFace && !hasFaceRegistered" class="es-alert es-alert-warn">
+      <span>🪪 You haven't registered your face yet. <strong>Register now</strong> so the AI can find your
+        photos.</span>
+      <button class="es-btn es-btn-primary" style="padding:.3rem .9rem;font-size:.8rem;"
+        (click)="goToConsent()">Register</button>
+    </div>
+
+    <!-- Room Header Card -->
+    <div class="es-room-header">
+      <div class="es-room-info">
+        <h1 class="es-room-title">{{ room.eventName }}</h1>
+        <div class="es-room-meta">
+          <span class="es-meta-chip">
+            🔑 <strong>Code:</strong> {{ room.roomCode }}
+          </span>
+          <span class="es-meta-chip es-chip-status">
+            ● {{ room.status }}
+          </span>
+          <span class="es-meta-chip">
+            🖼️ {{ photos.length }} photo{{ photos.length !== 1 ? 's' : '' }}
+          </span>
+        </div>
+      </div>
+      <button class="es-btn es-btn-primary es-btn-lg" (click)="findMyPhotos()" [disabled]="isMatching || isProcessing">
+        <span *ngIf="!isMatching">🔍 Find My Photos</span>
+        <span *ngIf="isMatching" class="es-btn-loading">
+          <span class="es-spinner es-spinner-sm"></span> Searching...
+        </span>
+      </button>
+    </div>
+
+    <!-- AI Processing Bar -->
+    <div *ngIf="isProcessing" class="es-processing-banner">
+      <div class="es-processing-info">
+        <span class="es-pulse-dot"></span>
+        <span>AI is scanning photos &mdash; <strong>{{ processedCount }}</strong> of <strong>{{ photos.length
+            }}</strong> processed</span>
+      </div>
+      <div class="es-progress-track">
+        <div class="es-progress-fill" [style.width.%]="photos.length > 0 ? (processedCount / photos.length) * 100 : 0">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Matched Photos Section ── -->
+    <section *ngIf="matchedPhotos.length > 0" class="es-section">
+      <div class="es-section-header">
+        <div class="es-section-title-group">
+          <h2 class="es-section-title">✅ Photos of You</h2>
+          <span class="es-count-badge es-badge-green">{{ matchedPhotos.length }}</span>
+        </div>
+        <button class="es-btn es-btn-danger" (click)="downloadAsPDF()">
+          ⬇ Download All as PDF
+        </button>
+      </div>
+      <div class="es-photo-grid">
+        <div class="es-photo-card es-card-matched" *ngFor="let photo of matchedPhotos">
+          <div class="es-photo-wrap">
+            <img [src]="photo.cloudinaryUrl" [alt]="'Matched photo'" class="es-photo-img" loading="lazy">
+            <div class="es-photo-overlay">
+              <button class="es-overlay-btn" (click)="downloadImage(photo.cloudinaryUrl, 'Match.jpg')">
+                ⬇ Download
+              </button>
+            </div>
+          </div>
+          <div class="es-match-ribbon">✓ Match</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Maybe Photos Section ── -->
+    <section *ngIf="maybePhotos.length > 0" class="es-section">
+      <div class="es-section-header">
+        <div class="es-section-title-group">
+          <h2 class="es-section-title">🤔 Maybe You?</h2>
+          <span class="es-count-badge es-badge-yellow">{{ maybePhotos.length }}</span>
+        </div>
+        <p class="es-section-subtitle">Lower confidence matches — take a look</p>
+      </div>
+      <div class="es-photo-grid es-photo-grid-sm">
+        <div class="es-photo-card es-card-maybe" *ngFor="let photo of maybePhotos">
+          <div class="es-photo-wrap">
+            <img [src]="photo.cloudinaryUrl" [alt]="'Possible match'" class="es-photo-img es-photo-dim" loading="lazy">
+            <div class="es-photo-overlay">
+              <button class="es-overlay-btn es-overlay-btn-warn"
+                (click)="downloadImage(photo.cloudinaryUrl, 'PossibleMatch.jpg')">
+                ⬇ Download
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── No Match Result / Fallback for unregistered users ── -->
+    <div *ngIf="!isMatching && matchedPhotos.length === 0 && maybePhotos.length === 0 && photos.length > 0"
+      class="es-empty-matches">
+      <span class="es-empty-icon">🙈</span>
+      <p class="es-empty-title">No matches found yet</p>
+      <p class="es-empty-sub">
+        Haven't registered your face yet? Register once and the AI will find every photo you're in.
+      </p>
+      <div class="d-flex gap-2 justify-content-center flex-wrap">
+        <button class="es-btn es-btn-primary" (click)="goToConsent()">
+          🪪 Register My Face
+        </button>
+        <button class="es-btn es-btn-outline" (click)="findMyPhotos()" [disabled]="isMatching || isProcessing">
+          🔍 Try Again
+        </button>
+      </div>
+    </div>
+
+    <!-- ── All Room Photos ── -->
+    <section class="es-section">
+      <div class="es-section-header">
+        <div class="es-section-title-group">
+          <h2 class="es-section-title">🗂 All Event Photos</h2>
+          <span class="es-count-badge">{{ photos.length }}</span>
+        </div>
+        <button *ngIf="photos.length > 0" class="es-btn es-btn-outline" (click)="downloadAll()">
+          ⬇ Download All
+        </button>
+      </div>
+
+      <div *ngIf="photos.length === 0" class="es-empty-state">
+        <span class="es-empty-icon">📂</span>
+        <p class="es-empty-title">No photos yet</p>
+        <p *ngIf="isOrganizer" class="es-empty-sub">Upload photos to get started.</p>
+        <p *ngIf="!isOrganizer" class="es-empty-sub">The organizer hasn't uploaded any photos yet.</p>
+        <button *ngIf="isOrganizer" class="es-btn es-btn-primary" (click)="goToUpload()">Upload Photos</button>
+      </div>
+
+      <div class="es-photo-grid" *ngIf="photos.length > 0">
+        <div class="es-photo-card" *ngFor="let photo of photos; trackBy: trackPhoto">
+          <div class="es-photo-wrap">
+            <img [src]="photo.cloudinaryUrl" [alt]="'Event photo'" class="es-photo-img"
+              [class.es-photo-dim]="photo.status === 'processing'" loading="lazy" (error)="onImgError($event)">
+            <!-- Scanning overlay -->
+            <div *ngIf="photo.status === 'processing'" class="es-scanning-overlay">
+              <div class="es-spinner es-spinner-sm"></div>
+              <span>Scanning...</span>
+            </div>
+            <!-- Download overlay -->
+            <div *ngIf="photo.status !== 'processing'" class="es-photo-overlay">
+              <button class="es-overlay-btn" (click)="downloadImage(photo.cloudinaryUrl, 'photo.jpg')">
+                ⬇ Download
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

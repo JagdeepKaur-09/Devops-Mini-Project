@@ -1,0 +1,127 @@
+.consent-page {
+    min-height: 100vh;
+    background: #0f1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.consent-card {
+    background: #1a1d27;
+    border: 1px solid #2e3250;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, .5);
+}
+
+.consent-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.consent-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #e8eaf6;
+    text-align: center;
+    margin: 0 0 .3rem;
+}
+
+.consent-subtitle {
+    color: #8b92b8;
+    text-align: center;
+    font-size: .9rem;
+    margin-bottom: 2rem;
+}
+
+.consent-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.consent-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: #22263a;
+    border: 1px solid #2e3250;
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+}
+
+.consent-item-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: .1rem;
+}
+
+.consent-item strong {
+    display: block;
+    color: #e8eaf6;
+    font-size: .9rem;
+    margin-bottom: .3rem;
+}
+
+.consent-item p {
+    color: #8b92b8;
+    font-size: .82rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.consent-legal {
+    background: rgba(108, 99, 255, .08);
+    border: 1px solid rgba(108, 99, 255, .25);
+    border-radius: 10px;
+    padding: .9rem 1rem;
+    font-size: .8rem;
+    color: #8b92b8;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+}
+
+.consent-actions {
+    display: flex;
+    gap: .75rem;
+}
+
+.consent-btn {
+    flex: 1;
+    padding: .75rem 1rem;
+    border-radius: 10px;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background .2s, transform .2s;
+}
+
+.consent-btn:hover {
+    transform: translateY(-1px);
+}
+
+.consent-btn-decline {
+    background: transparent;
+    color: #8b92b8;
+    border: 1px solid #2e3250;
+}
+
+.consent-btn-decline:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.consent-btn-agree {
+    background: #6c63ff;
+    color: #fff;
+}
+
+.consent-btn-agree:hover {
+    background: #8b85ff;
+}

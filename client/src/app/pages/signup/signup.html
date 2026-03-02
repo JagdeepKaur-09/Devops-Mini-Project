@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card p-4 shadow">
+        <h3 class="text-center mb-4">Sign Up</h3>
+
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="name" placeholder="Enter name">
+        </div>
+
+        <div class="mb-3">
+          <label>Email</label>
+          <input type="email" class="form-control" [(ngModel)]="email" placeholder="Enter email">
+        </div>
+
+        <div class="mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control" [(ngModel)]="password" placeholder="Enter password">
+        </div>
+
+        <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+        <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+
+        <button class="btn btn-primary w-100" (click)="signup()">Sign Up</button>
+
+        <p class="text-center mt-3">Already have an account? <a routerLink="/login">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>

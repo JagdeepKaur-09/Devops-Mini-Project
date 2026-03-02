@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>EventSnap AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <style>
+    :root {
+      --clr-primary: #6c63ff;
+      --clr-dark: #0f1117;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: var(--clr-dark);
+      color: #e8eaf6;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .wrapper {
+      flex: 1;
+    }
+
+    /* Navbar */
+    .es-nav {
+      background: #1a1d27;
+      border-bottom: 1px solid #2e3250;
+      padding: .9rem 2rem;
+    }
+
+    .es-nav .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #e8eaf6;
+      text-decoration: none;
+    }
+
+    .es-nav .brand span {
+      color: var(--clr-primary);
+    }
+
+    /* Hero */
+    .es-hero {
+      background: linear-gradient(135deg, #1a1d27 0%, #12142a 100%);
+      padding: 6rem 1rem 5rem;
+      text-align: center;
+      border-bottom: 1px solid #2e3250;
+    }
+
+    .es-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .es-hero h1 span {
+      color: var(--clr-primary);
+    }
+
+    .es-hero p {
+      font-size: 1.15rem;
+      color: #8b92b8;
+      max-width: 520px;
+      margin: 1rem auto 2rem;
+    }
+
+    .es-btn-primary {
+      background: var(--clr-primary);
+      color: #fff;
+      border: none;
+      padding: .75rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: background .2s, transform .2s;
+    }
+
+    .es-btn-primary:hover {
+      background: #8b85ff;
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .es-btn-outline {
+      background: transparent;
+      color: #e8eaf6;
+      border: 1px solid #2e3250;
+      padding: .75rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color .2s, color .2s;
+    }
+
+    .es-btn-outline:hover {
+      border-color: var(--clr-primary);
+      color: var(--clr-primary);
+    }
+
+    /* Steps */
+    .es-steps {
+      padding: 4rem 1rem;
+      background: #0f1117;
+    }
+
+    .es-step-card {
+      background: #1a1d27;
+      border: 1px solid #2e3250;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      height: 100%;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .es-step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .4);
+    }
+
+    .es-step-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .es-step-card h5 {
+      font-weight: 700;
+      color: #e8eaf6;
+      margin-bottom: .5rem;
+    }
+
+    .es-step-card p {
+      color: #8b92b8;
+      font-size: .9rem;
+      margin: 0;
+    }
+
+    .es-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--clr-primary);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+
+    /* Features */
+    .es-features {
+      padding: 4rem 1rem;
+      background: #12142a;
+    }
+
+    .es-feature-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .es-feature-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+
+    .es-feature-item h6 {
+      font-weight: 700;
+      color: #e8eaf6;
+      margin-bottom: .2rem;
+    }
+
+    .es-feature-item p {
+      color: #8b92b8;
+      font-size: .875rem;
+      margin: 0;
+    }
+
+    /* CTA */
+    .es-cta {
+      padding: 4rem 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1d27, #12142a);
+      border-top: 1px solid #2e3250;
+    }
+
+    .es-cta h2 {
+      font-weight: 800;
+    }
+
+    .es-cta p {
+      color: #8b92b8;
+    }
+
+    footer {
+      background: #1a1d27;
+      border-top: 1px solid #2e3250;
+      color: #8b92b8;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: .875rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="es-nav d-flex justify-content-between align-items-center">
+      <a href="#" class="brand">📸 EventSnap <span>AI</span></a>
+      <div class="d-flex gap-2">
+        <a href="http://localhost:4200/login" class="es-btn-outline"
+          style="padding:.5rem 1.2rem; font-size:.875rem;">Login</a>
+        <a href="http://localhost:4200/signup" class="es-btn-primary"
+          style="padding:.5rem 1.2rem; font-size:.875rem;">Sign Up</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="es-hero">
+      <h1>Find Your Event Photos<br><span>Instantly with AI</span></h1>
+      <p>No more scrolling through hundreds of photos. Our AI finds every photo you're in — automatically.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="http://localhost:4200/signup" class="es-btn-primary">Get Started Free</a>
+        <a href="http://localhost:4200/login" class="es-btn-outline">Login</a>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="es-steps">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-2">How It Works</h2>
+        <p class="text-center mb-5" style="color:#8b92b8;">Three simple steps to find all your event photos</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="es-step-card">
+              <div class="es-step-num">1</div>
+              <div class="es-step-icon">📤</div>
+              <h5>Organizer Uploads</h5>
+              <p>Event organizer creates a room and uploads all event photos in bulk.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="es-step-card">
+              <div class="es-step-num">2</div>
+              <div class="es-step-icon">🪪</div>
+              <h5>Register Your Face</h5>
+              <p>Participants register their face once via webcam. Takes 5 seconds.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="es-step-card">
+              <div class="es-step-num">3</div>
+              <div class="es-step-icon">✅</div>
+              <h5>AI Finds Your Photos</h5>
+              <p>Our AI scans every photo and shows you only the ones you're in.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="es-features">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-md-6">
+            <h2 class="fw-bold mb-4">Everything you need</h2>
+            <div class="es-feature-item">
+              <span class="es-feature-icon">🔒</span>
+              <div>
+                <h6>Privacy First</h6>
+                <p>Face data is stored as numbers, never as images. Auto-deleted after 7 days.</p>
+              </div>
+            </div>
+            <div class="es-feature-item">
+              <span class="es-feature-icon">⚡</span>
+              <div>
+                <h6>Real-time Processing</h6>
+                <p>Background AI queue processes photos instantly. Watch the progress live.</p>
+              </div>
+            </div>
+            <div class="es-feature-item">
+              <span class="es-feature-icon">📄</span>
+              <div>
+                <h6>PDF Download</h6>
+                <p>Download all your matched photos as a single PDF with one click.</p>
+              </div>
+            </div>
+            <div class="es-feature-item">
+              <span class="es-feature-icon">🔗</span>
+              <div>
+                <h6>Shareable Room Codes</h6>
+                <p>Share a simple room code with all participants. No app install needed.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <div style="background:#1a1d27;border:1px solid #2e3250;border-radius:20px;padding:3rem 2rem;">
+              <div style="font-size:4rem;margin-bottom:1rem;">🤖</div>
+              <h4 class="fw-bold">Powered by face-api.js</h4>
+              <p style="color:#8b92b8;">Industry-grade face recognition running entirely on your server. No third-party
+                AI APIs. Your data stays yours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="es-cta">
+      <h2>Ready to find your photos?</h2>
+      <p class="mb-4">Create a free account and get started in minutes.</p>
+      <a href="http://localhost:4200/signup" class="es-btn-primary">Create Free Account</a>
+    </section>
+
+  </div>
+
+  <footer>
+    EventSnap AI &mdash; Built with Angular, Node.js, face-api.js &amp; Cloudinary
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<div class="consent-page">
+    <div class="consent-card">
+
+        <div class="consent-icon">🔒</div>
+        <h2 class="consent-title">Biometric Data Consent</h2>
+        <p class="consent-subtitle">Please read carefully before proceeding</p>
+
+        <div class="consent-body">
+
+            <div class="consent-item">
+                <span class="consent-item-icon">📷</span>
+                <div>
+                    <strong>What we collect</strong>
+                    <p>Your webcam will capture your face and convert it into a set of 128 numbers (a mathematical
+                        descriptor). We do <em>not</em> store any photos of your face.</p>
+                </div>
+            </div>
+
+            <div class="consent-item">
+                <span class="consent-item-icon">🎯</span>
+                <div>
+                    <strong>How it's used</strong>
+                    <p>These numbers are compared against event photos to find pictures you appear in. This data is used
+                        solely for photo matching within this app.</p>
+                </div>
+            </div>
+
+            <div class="consent-item">
+                <span class="consent-item-icon">🗑️</span>
+                <div>
+                    <strong>Auto-deletion</strong>
+                    <p>Your biometric data is automatically and permanently deleted after <strong>7 days</strong>. You
+                        can also delete it at any time from your account.</p>
+                </div>
+            </div>
+
+            <div class="consent-item">
+                <span class="consent-item-icon">🔐</span>
+                <div>
+                    <strong>Security</strong>
+                    <p>Data is stored securely in our database and never shared with third parties. Only you can trigger
+                        a face match.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="consent-legal">
+            By clicking <strong>I Agree</strong>, you consent to the collection and processing of your biometric data as
+            described above, in accordance with applicable privacy laws.
+        </div>
+
+        <div class="consent-actions">
+            <button class="consent-btn consent-btn-decline" (click)="decline()">
+                Decline
+            </button>
+            <button class="consent-btn consent-btn-agree" (click)="agree()">
+                ✓ I Agree — Continue
+            </button>
+        </div>
+
+    </div>
+</div>

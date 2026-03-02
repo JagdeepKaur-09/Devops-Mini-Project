@@ -1,0 +1,43 @@
+{
+  "name": "event_pic_finder",
+  "version": "1.0.0",
+  "description": "Find your pictures and images in the event easily.",
+  "keywords": [
+    "Pic",
+    "Finder",
+    "MEAN",
+    "Mongo",
+    "Express",
+    "Angular",
+    "Node"
+  ],
+  "license": "ISC",
+  "author": "Jagdeep Kaur",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "download-models": "node scripts/download-models.js",
+    "test": "echo \"No tests configured\""
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.100",
+    "axios": "^1.15.0",
+    "bcryptjs": "^3.0.3",
+    "bootstrap": "^5.3.8",
+    "bull": "^4.16.5",
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^7.5.1",
+    "face-api.js": "^0.22.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.4",
+    "multer": "^2.1.1",
+    "node-cron": "^3.0.3",
+    "pdfkit": "^0.18.0",
+    "redis": "^5.11.0",
+    "socket.io": "^4.8.3"
+  }
+}
