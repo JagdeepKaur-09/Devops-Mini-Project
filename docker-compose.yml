@@ -32,7 +32,6 @@ services:
     env_file:
       - .env
     environment:
-      - MONGO_URI=mongodb://mongo:27017/eventsnapDB
       - REDIS_URL=redis://redis:6379
       - CLIENT_URL=http://localhost
     depends_on:
