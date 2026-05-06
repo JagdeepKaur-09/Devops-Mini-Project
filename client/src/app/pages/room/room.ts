@@ -138,7 +138,11 @@ export class RoomComponent implements OnInit, OnDestroy {
   // ── Socket.io ─────────────────────────────────────────────────────────────
   private connectSocket(roomId: string): void {
     try {
-      this.socket = io('http://localhost:5000', {
+      // In dev (port 4200): connect directly to backend. In Docker: Nginx proxies /socket.io/
+      const socketUrl = (window.location.hostname === 'localhost' && window.location.port === '4200')
+        ? 'http://localhost:5000'
+        : window.location.origin;
+      this.socket = io(socketUrl, {
         transports: ['polling', 'websocket'],
         timeout: 5000,
         reconnectionAttempts: 3
